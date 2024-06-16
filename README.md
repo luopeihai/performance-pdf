@@ -12,9 +12,9 @@
 
 左图为原 pdf 加载效果，右图为分片方案加载效果
 
-<img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/bb144e3348d3450ca95e5ec9f7652fe7~tplv-k3u1fbpfcp-jj-mark:0:0:0:0:q75.image#?w=1080&h=2300&s=20915780&e=gif&f=208&b=fcfbfe" alt="7.gif" width="49%" />
+<img src="./docs/7.gif" alt="7.gif" width="49%" />
 
-<img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1fea807e61ca4169b07dd74b0b0b23a8~tplv-k3u1fbpfcp-jj-mark:0:0:0:0:q75.image#?w=1080&h=2300&s=16487153&e=gif&f=70&b=fcfbfe" alt="9.gif" width="49%" />
+<img src="./docs/9.gif" alt="9.gif" width="49%" />
 
 ## 环境与使用到的技术点
 
