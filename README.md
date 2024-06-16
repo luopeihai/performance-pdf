@@ -4,6 +4,18 @@
 
 高性能加载 pdf 全栈方案，本文通过 node nestjs 服务端上传 pdf 文件同时切片 pdf 为图片，再到移动端 h5 优先加载切片图直至原 pdf 文件资源加载完成后显示 pdf 源文件，加载 pdf 源文件后支持用户手势缩放，复制。
 
+## pdf 分片切图方案效果对比
+
+运行环境：在 Chrome 浏览器，模拟移动端加载 pdf，`network`设置为 4G
+
+加载的 pdf 文件：[NVIDIA2024 第一季度财报](chrome-extension://lbcbipoloacjakecofjkohgllhojdhhp/assets/pdf-viewer/web/viewer.html?file=https%3A%2F%2Fs201.q4cdn.com%2F141608511%2Ffiles%2Fdoc_financials%2F2024%2Far%2FNVIDIA-2024-Annual-Report.pdf)pdf 文件，页数在 183，文件大小：34.8MB
+
+左图为原 pdf 加载效果，右图为分片方案加载效果
+
+<img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/bb144e3348d3450ca95e5ec9f7652fe7~tplv-k3u1fbpfcp-jj-mark:0:0:0:0:q75.image#?w=1080&h=2300&s=20915780&e=gif&f=208&b=fcfbfe" alt="7.gif" width="49%" />
+
+<img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1fea807e61ca4169b07dd74b0b0b23a8~tplv-k3u1fbpfcp-jj-mark:0:0:0:0:q75.image#?w=1080&h=2300&s=16487153&e=gif&f=70&b=fcfbfe" alt="9.gif" width="49%" />
+
 ## 环境与使用到的技术点
 
 1. 服务端： node，[nestjs](https://nestjs.com/)，MulterModule，ServeStaticModule，FileInterceptor,postman 工具
