@@ -12,9 +12,10 @@
 
 左图为原 pdf 加载效果，右图为分片方案加载效果
 
-<img src="./docs/7.gif" alt="7.gif" width="45%" />
-
-<img src="./docs/9.gif" alt="9.gif" width="45%" />
+ <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+        <img src="./docs/7.gif" alt="7.gif" style="width: 45%;" />
+        <img src="./docs/9.gif" alt="9.gif" style="width: 45%;" />
+ </div>
 
 ## 环境与使用到的技术点
 
