@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black"
+    />
+    <meta name="format-detection" content="telephone=no" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,user-scalable=no"
+    />
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="expires" content="0" />
+    <title>PDFH5</title>
+    <link rel="stylesheet" href="css/pdfh5.css" />
+    <style>
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+      }
+      .image-list {
+        padding: 12px 8px;
+        z-index: 999;
+      }
+      .image-list img {
+        box-sizing: border-box;
+        border: none;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        margin-bottom: 8px;
+        box-shadow: darkgrey 0px 1px 3px 0px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="image-list"></div>
+    <div id="demo"></div>
+
+    <script src="js/pdf.js"></script>
+    <script src="js/pdf.worker.js"></script>
+    <script
+      src="js/jquery-3.6.0.min.js"
+      type="text/javascript"
+      charset="utf-8"
+    ></script>
+    <script
+      src="js/pdfh5.js"
+      type="text/javascript"
+      charset="utf-8"
+    ></script>
+    <script type="text/javascript">
+      var pdfh5;
+      const imageList = $(".image-list");
+
+      $(function () {
+        // Perform AJAX GET request to retrieve PDF URL
+        $.get("http://localhost:3000/upload", function (response) {
+          if (response && response.pdf) {
+            var pdfUrl = response.pdf;
+            var images = response.images;
+
+            loadImageSequentially(images);
+
+            pdfh5 = new Pdfh5("#demo", {
+              pdfurl: pdfUrl,
+              pageNum: false,
+              URIenable: false, //关闭浏览器地址栏file参数获取
+              lazy: false,
+            });
+            // pdfh5.on("zoom", function (scale) {
+            //   console.log(scale);
+            // });
+
+            //pdf渲染过程
+            // pdfh5.on(
+            //   "render",
+            //   function (currentNum, time, currentPageDom) {
+            //     console.log("pdf渲染：" + currentNum, time);
+            //     window.parent.postMessage(
+            //       "pdf-render" + currentNum + "|" + time
+            //     );
+            //   }
+            // );
+
+            //监听pdf渲染成功
+            pdfh5.on("success", function (time) {
+              const scrollTop = $(window).scrollTop();
+              imageList.remove();
+              document
+                .querySelector(".viewerContainer")
+                .scrollTo(0, scrollTop);
+              //   $(window).scrollTop(scrollTop);
+              time = time / 1000;
+              console.log("pdf渲染完成，总耗时" + time + "秒");
+              //滚动到第3页
+              // pdfh5.goto(3);
+            });
+
+            //监听完成事件，加载失败、渲染成功都会触发
+            // pdfh5.on("complete", function (status, msg, time) {
+            //   console.log(
+            //     "状态：" +
+            //       status +
+            //       "，总耗时：" +
+            //       time +
+            //       "毫秒，总页数：" +
+            //       this.totalNum,
+            //     msg
+            //   );
+            // });
+          } else {
+            console.error("Failed to retrieve PDF URL.");
+          }
+        }).fail(function () {
+          console.error("Failed to perform GET request.");
+        });
+      });
+
+      function loadImageSequentially(images) {
+        let index = 1;
+
+        function loadNextImage() {
+          if (index < images.length + 1) {
+            const img = new Image();
+            img.src = images[index];
+            img.onload = function () {
+              index++;
+              loadNextImage(); // Load next image
+            };
+            img.onerror = function (error) {
+              console.error("Failed to load image:", img.src, error);
+              index++;
+              loadNextImage(); // Skip to next image
+            };
+            imageList.append(img);
+          }
+        }
+
+        // Start loading the first image
+        loadNextImage();
+      }
+    </script>
+  </body>
+</html>
