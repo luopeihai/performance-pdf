@@ -31,7 +31,7 @@ export class UploadController {
     async getPdf() {
         // 这里根据自身上传的资源路径指定
         const baseUrl = 'http://localhost:3000/uploads/'
-        const pdf = `${baseUrl}1718437748872.pdf`;
+        const pdf = `${baseUrl}1719022855717.pdf`;
         // 存储切片图
         const images = []
         // 有187张图片
