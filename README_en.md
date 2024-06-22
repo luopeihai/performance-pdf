@@ -17,9 +17,9 @@ The PDF file used for testing is the [NVIDIA 2024 Q1 Financial Report](https://s
 
 Below is a comparison of the original PDF loading effect (left) and the chunked loading solution (right):
 
- <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
-        <img src="./docs/7.gif" alt="7.gif" style="width: 45%;" />
-        <img src="./docs/9.gif" alt="9.gif" style="width: 45%;" />
+ <div style="display: flex;flex-direction:row, justify-content: space-between; align-items: center; width: 100%;">
+        <img src="./docs/1.gif" alt="7.gif" style="width: 45%;" />
+        <img src="./docs/2.gif" alt="9.gif" style="width: 45%;" />
  </div>
 
 ## Environment and Technologies Used
