@@ -90,4 +90,4 @@ npm i http-server -g
 3. View the Result
    Open http://127.0.0.1:8080 in your browser to see the effect.
 
-## [Detailed Code Steps Explanation](https://juejin.cn/spost/7380292749179879439)
+## [Detailed Code Steps Explanation](https://medium.com/@ggluopeihai/pdf-slice-loading-full-stack-solution-89c12d92a2a4)
